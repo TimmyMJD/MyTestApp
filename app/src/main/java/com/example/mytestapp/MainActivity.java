@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapter adapter;
     private ViewPager2 viewPager;
 
-
+    private final static String ID_KEY = "id_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Intent notificationIntent = new Intent(MainActivity.this, MainActivity.class);
-                notificationIntent.putExtra("id", id);
+                notificationIntent.putExtra(ID_KEY, id);
                 PendingIntent contentIntent = PendingIntent.getActivity(MainActivity.this, id, notificationIntent, 0);
 
                 NotificationCompat.Builder builder =
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<Integer> fragmentList = new ArrayList();
-        Integer id = getIntent().getIntExtra("id", 1);
+        Integer id = getIntent().getIntExtra(ID_KEY, 1);
         fragmentList.add(id);
 
         adapter.setFragmentList(fragmentList);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Integer id = intent.getIntExtra("id", -1);
+        Integer id = intent.getIntExtra(ID_KEY, -1);
         int newPosition = adapter.getFragmentList().indexOf(id);
         if(newPosition != -1) {
             viewPager.setCurrentItem(newPosition);
