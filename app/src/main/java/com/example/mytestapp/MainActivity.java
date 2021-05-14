@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapter adapter;
     private ViewPager2 viewPager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
